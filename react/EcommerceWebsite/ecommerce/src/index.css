@@ -1,0 +1,48 @@
+
+@import "tailwindcss";
+
+
+/* clerk user button adjust */
+
+.cl-avatarBox {
+  width: 3rem;
+  height: 3rem;
+}
+
+.arrows {
+  height: 48px;
+  width: 48px;
+  margin: 4px;
+  background-color: rgba(255, 85, 100, 0.9);
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(255, 85, 100, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.arrows:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(255, 85, 100, 0.6);
+}
+
+/* Enhanced input styling */
+input {
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  color: #333;
+  padding: 10px 14px;
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  accent-color: #f53347;
+}
+
+input:focus {
+  border-color: #f53347;
+  box-shadow: 0 0 0 3px rgba(245, 51, 71, 0.2);
+}
+
