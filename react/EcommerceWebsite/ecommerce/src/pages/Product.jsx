@@ -1,7 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { DataContext } from "../context/DataContext";
 import ProductCard from "../components/ProductCard";
-import { useParams } from "react-router-dom";
 
 const Products = () => {
   const { data, fetchAllProducts } = useContext(DataContext);
@@ -14,16 +13,15 @@ const Products = () => {
     fetchAllProducts();
   }, [fetchAllProducts]);
 
-  // const filteredData =
-  //   selectedCategory === "all"
-  //     ? data
-  //     : data.filter((product) => product.category === selectedCategory);
-
-  const paginatedData = Array.isArray(data)
-    ? data.slice((page - 1) * pageSize, page * pageSize)
+  const filteredData = Array.isArray(data)
+    ? selectedCategory === "all"
+      ? data
+      : data.filter((product) => product.category === selectedCategory)
     : [];
-
-  const filteredData = Array.isArray(data) ? data : [];
+  const paginatedData = filteredData.slice(
+    (page - 1) * pageSize,
+    page * pageSize
+  );
   const totalPages = Math.ceil(filteredData.length / pageSize);
 
   return (

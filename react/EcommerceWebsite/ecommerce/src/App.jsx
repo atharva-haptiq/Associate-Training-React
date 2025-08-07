@@ -13,16 +13,8 @@ import Wishlist from "./pages/Wishlist";
 import Login from "./components/Login";
 import PrivateRoute from "./components/PrivateRoute";
 import Register from "./components/Register";
-// import { useDispatch } from "react-redux";
-// import { loadUserFromStorage } from "./store/authSlice";
 
 const App = () => {
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(loadUserFromStorage());
-  // }, [dispatch]);
-
   const [location, setLocation] = useState();
   const [openDropdown, setOpendDropdown] = useState(false);
 

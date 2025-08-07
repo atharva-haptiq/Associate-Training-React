@@ -1,15 +1,10 @@
-import React, { useContext } from "react";
 import { IoCartOutline, IoHeartOutline } from "react-icons/io5";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { addToCart } from "../store/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { DataContext } from "../context/DataContext";
 import { addToWishlist } from "../store/wishlistSlice";
-import { useUser } from "@clerk/clerk-react";
 
 const ProductCard = ({ product }) => {
-  // const { id } = useParams();
-  // const { data } = useContext(DataContext);
   const dispatch = useDispatch();
 
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);

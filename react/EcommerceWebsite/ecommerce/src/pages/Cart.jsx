@@ -1,6 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart, clearCart } from "../store/cartSlice";
-import { DataContext } from "../context/DataContext";
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);

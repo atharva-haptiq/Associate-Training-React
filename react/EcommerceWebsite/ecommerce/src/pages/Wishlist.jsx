@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { removeFromWishlist } from "../store/wishlistSlice"; // You need this action
+import { removeFromWishlist } from "../store/wishlistSlice";
 import { useNavigate } from "react-router-dom";
 
 const Wishlist = () => {

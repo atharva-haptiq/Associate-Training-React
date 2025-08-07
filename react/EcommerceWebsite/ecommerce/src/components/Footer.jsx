@@ -87,7 +87,7 @@ const Footer = () => {
 
       <div className="mt-12 border-t border-gray-800 pt-6 text-center text-sm text-gray-500">
         &copy; {new Date().getFullYear()}{" "}
-        <span className="text-red-500 font-semibold">ShopPro</span>. All rights
+        <span className="text-red-500 font-semibold">ShoPro</span>. All rights
         reserved.
       </div>
     </footer>
