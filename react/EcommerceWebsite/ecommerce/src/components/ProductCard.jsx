@@ -5,10 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToWishlist } from "../store/wishlistSlice";
 
 const ProductCard = ({ product }) => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
+  const navigate = useNavigate();
   const handleAddToCart = () => {
     if (!isAuthenticated) {
       alert("Please log in to add to cart.");
