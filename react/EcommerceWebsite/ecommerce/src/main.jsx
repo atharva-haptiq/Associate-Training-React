@@ -7,22 +7,12 @@ import { store } from "./store/store";
 import { ClerkProvider } from "@clerk/clerk-react";
 import { DataProvider } from "./context/DataContext.jsx";
 
-// Import your Publishable Key
-const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
-// console.log("CLERK KEY:", import.meta.env.VITE_CLERK_PUBLISHABLE_KEY);
-
-if (!PUBLISHABLE_KEY) {
-  throw new Error("Missing Publishable Key");
-}
-
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <DataProvider>
-      <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
-        <Provider store={store}>
-          <App />
-        </Provider>
-      </ClerkProvider>
+      <Provider store={store}>
+        <App />
+      </Provider>
     </DataProvider>
   </StrictMode>
 );

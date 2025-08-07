@@ -18,7 +18,7 @@ const About = () => {
       </p>
       <p className="text-gray-700 leading-relaxed">
         Whether you're here for the latest gadgets, trendy outfits, or home
-        must-haves, we're glad to have you. Thank you for choosing ShopWise!
+        must-haves, we're glad to have you. Thank you for choosing ShoPro!
       </p>
     </div>
   );

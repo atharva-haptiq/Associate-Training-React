@@ -1,20 +1,8 @@
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart, clearCart } from "../store/cartSlice";
-// import { useParams } from "react-router-dom";
-// import { useContext } from "react";
 import { DataContext } from "../context/DataContext";
 
 const Cart = () => {
-  // const { id } = useParams();
-  // const { data } = useContext(DataContext);
-
-  // const product = data?.find((item) => item.id.toString() == id);
-
-  // const handleCart = () => {
-  //   dispatch(addToCart(product));
-  //   alert("Added to cart!");
-  // };
-
   const cartItems = useSelector((state) => state.cart.cartItems);
   const dispatch = useDispatch();
 

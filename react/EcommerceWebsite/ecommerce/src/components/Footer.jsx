@@ -14,7 +14,7 @@ const Footer = () => {
         <div>
           <Link to="/" className="block mb-3">
             <h1 className="text-red-500 text-4xl font-extrabold tracking-wide">
-              ShopPro
+              ShoPro
             </h1>
           </Link>
           <p className="text-sm leading-relaxed text-gray-400">

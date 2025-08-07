@@ -3,13 +3,12 @@ import { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { DataContext } from "../context/DataContext";
 import { addToCart } from "../store/cartSlice";
-import { useUser } from "@clerk/clerk-react";
 
 const ProductDetail = () => {
   const { id } = useParams();
   const { data } = useContext(DataContext);
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const product = data?.find((item) => item.id.toString() === id);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);

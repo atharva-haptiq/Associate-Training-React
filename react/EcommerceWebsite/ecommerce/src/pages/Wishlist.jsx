@@ -37,7 +37,7 @@ const Wishlist = () => {
               <button
                 onClick={() => {
                   dispatch(removeFromWishlist(item.id));
-                  alert("Removed from wishList");
+                  alert("Removed from wishlist");
                 }}
                 className="mt-auto py-2 px-4 bg-red-500 text-white rounded hover:bg-red-600 transition"
               >

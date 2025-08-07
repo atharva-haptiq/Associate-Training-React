@@ -25,7 +25,7 @@ const MidBanner = () => {
               fast and hassle-free.
             </p>
             <button
-              onClick={navigate("/products")}
+              onClick={() => navigate("/products")}
               className="bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 shadow-md hover:shadow-lg"
             >
               Start Shopping
