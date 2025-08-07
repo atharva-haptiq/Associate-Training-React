@@ -1,33 +1,51 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
+function getWishlistItemsFromStorage() {
+  try {
+    const data = localStorage.getItem("wishlistItems");
+    return data ? JSON.parse(data) : [];
+  } catch (e) {
+    console.error("Failed to parse wishlist items from localStorage", e);
+    return [];
+  }
+}
 const initialState = {
-  wishlistItems: JSON.parse(localStorage.getItem('wishlistItems')) || [],
+  wishlistItems: getWishlistItemsFromStorage(),
 };
-
 const wishlistSlice = createSlice({
-  name: 'wishlist',
+  name: "wishlist",
   initialState,
   reducers: {
     addToWishlist: (state, action) => {
       const item = action.payload;
-      const exists = state.wishlistItems.find(i => i.id === item.id);
-      if (exists) {
-        exists.quantity += 1;
-      } else {
-        state.wishlistItems.push({ ...item, quantity: 1 });
+      const exists = state.wishlistItems.find((i) => i.id === item.id);
+
+      if (!exists) {
+        state.wishlistItems.push({ ...item });
+        localStorage.setItem(
+          "wishlistItems",
+          JSON.stringify(state.wishlistItems)
+        );
       }
-      localStorage.setItem('wishlistItems', JSON.stringify(state.wishlistItems));
     },
+
     removeFromWishlist: (state, action) => {
-      state.wishlistItems = state.wishlistItems.filter(item => item.id !== action.payload);
-      localStorage.setItem('wishlistItems', JSON.stringify(state.wishlistItems));
+      state.wishlistItems = state.wishlistItems.filter(
+        (item) => item.id !== action.payload
+      );
+      localStorage.setItem(
+        "wishlistItems",
+        JSON.stringify(state.wishlistItems)
+      );
     },
+
     clearWishlist: (state) => {
       state.wishlistItems = [];
-      localStorage.removeItem('wishlistItems');
+      localStorage.removeItem("wishlistItems");
     },
   },
 });
 
-export const { addToWishlist, removeFromWishlist, clearWishlist } = wishlistSlice.actions;
+export const { addToWishlist, removeFromWishlist, clearWishlist } =
+  wishlistSlice.actions;
 export default wishlistSlice.reducer;

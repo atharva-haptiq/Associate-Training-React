@@ -35,13 +35,13 @@ const ProductDetail = () => {
       <div className="flex justify-center items-center">
         <img
           src={product.image || "https://via.placeholder.com/400"}
-          alt={product.name}
+          alt={product.title}
           className="rounded-lg shadow-md w-full max-w-md object-cover"
         />
       </div>
 
       <div className="space-y-4">
-        <h1 className="text-3xl font-bold text-gray-800">{product.name}</h1>
+        <h1 className="text-3xl font-bold text-gray-800">{product.title}</h1>
         <p className="text-lg text-gray-600">Brand: {product.brand}</p>
         <p className="text-lg text-gray-600">Category: {product.category}</p>
         <p className="text-2xl font-semibold text-red-600">${product.price}</p>

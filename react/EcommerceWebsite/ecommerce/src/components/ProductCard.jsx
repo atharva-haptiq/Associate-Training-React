@@ -8,7 +8,7 @@ const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
 
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-
+  const navigate = useNavigate();
   const handleAddToCart = () => {
     if (!isAuthenticated) {
       alert("Please log in to add to cart.");
@@ -30,7 +30,6 @@ const ProductCard = ({ product }) => {
     dispatch(addToWishlist(product));
     alert("Added to wishlist!");
   };
-  const navigate = useNavigate();
 
   return (
     <div className="group border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300 transform hover:-translate-y-1 hover:scale-[1.02] bg-white">
