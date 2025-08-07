@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToWishlist } from "../store/wishlistSlice";
 
 const ProductCard = ({ product }) => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
   const handleAddToCart = () => {
