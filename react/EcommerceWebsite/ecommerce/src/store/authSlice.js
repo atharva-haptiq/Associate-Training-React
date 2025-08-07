@@ -9,6 +9,7 @@ function getUserFromStorage() {
     return null;
   }
 }
+
 const userFromStorage = getUserFromStorage();
 
 const initialState = {

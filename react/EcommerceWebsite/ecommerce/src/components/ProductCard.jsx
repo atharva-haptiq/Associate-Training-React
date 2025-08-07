@@ -6,9 +6,9 @@ import { addToWishlist } from "../store/wishlistSlice";
 
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
-
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const navigate = useNavigate();
+
   const handleAddToCart = () => {
     if (!isAuthenticated) {
       alert("Please log in to add to cart.");
