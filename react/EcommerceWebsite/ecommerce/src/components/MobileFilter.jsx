@@ -54,7 +54,6 @@ const MobileFilter = ({
               );
             })}
           </div>
-          {/* brand only data */}
           <h1 className="mt-5 font-semibold text-xl mb-3">Brand</h1>
           <select
             name=""
@@ -71,7 +70,6 @@ const MobileFilter = ({
               );
             })}
           </select>
-          {/* price range  */}
           <h1 className="mt-5 font-semibold text-xl mb-3">Price Range</h1>
           <div className="flex flex-col gap-2">
             <label htmlFor="">

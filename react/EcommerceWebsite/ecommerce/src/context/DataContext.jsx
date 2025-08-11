@@ -1,34 +1,38 @@
 import axios from "axios";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useMemo } from "react";
 
 export const DataContext = createContext(null);
 
 export const DataProvider = ({ children }) => {
-  const [data, setData] = useState();
+  const [data, setData] = useState([]);
 
+  // Fetch all products from API
   const fetchAllProducts = async () => {
     try {
       const res = await axios.get(
         "https://fakestoreapi.in/api/products?limit=150"
       );
-      console.log(res);
-      const productsData = res.data.products;
+      const productsData = res.data?.products || [];
       setData(productsData);
     } catch (error) {
-      console.log(error);
+      console.error("Error fetching products:", error);
     }
   };
 
-  const getUniqueCategory = (data, property) => {
-    let newVal = data?.map((curElem) => {
-      return curElem[property];
-    });
-    newVal = ["All", ...new Set(newVal)];
-    return newVal;
+  // Get unique values for a given property
+  const getUniqueValues = (items, property) => {
+    if (!Array.isArray(items)) return [];
+    return ["All", ...new Set(items.map((item) => item[property]))];
   };
 
-  const categoryOnlyData = getUniqueCategory(data, "category");
-  const brandOnlyData = getUniqueCategory(data, "brand");
+  // Memoized categories and brands to avoid recalculating on every render
+  const categoryOnlyData = useMemo(
+    () => getUniqueValues(data, "category"),
+    [data]
+  );
+
+  const brandOnlyData = useMemo(() => getUniqueValues(data, "brand"), [data]);
+
   return (
     <DataContext.Provider
       value={{

@@ -13,69 +13,73 @@ import Wishlist from "./pages/Wishlist";
 import Login from "./components/Login";
 import PrivateRoute from "./components/PrivateRoute";
 import Register from "./components/Register";
+import { Toaster } from "../node_modules/react-hot-toast/src/components/toaster";
 
 const App = () => {
-  const [location, setLocation] = useState();
-  const [openDropdown, setOpendDropdown] = useState(false);
+  const [location, setLocation] = useState(null);
 
   const getLocation = async () => {
-    navigator.geolocation.getCurrentPosition(async (pos) => {
-      const { latitude, longitude } = pos.coords;
-      console.log(latitude, longitude, "-----------");
+    if (!navigator.geolocation) {
+      console.error("Geolocation is not supported by this browser.");
+      return;
+    }
 
-      const url = `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`;
-      try {
-        const location = await axios.get(url);
-        const exactLocation = location.data.address;
-        // console.log(location);
-        setLocation(exactLocation);
-        setOpendDropdown(false);
-      } catch (error) {
-        console.log(error);
+    navigator.geolocation.getCurrentPosition(
+      async (pos) => {
+        const { latitude, longitude } = pos.coords;
+        const url = `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`;
+
+        try {
+          const res = await axios.get(url);
+          const exactLocation = res.data?.address || {};
+          setLocation(exactLocation);
+        } catch (error) {
+          console.error("Error fetching location:", error);
+        }
+      },
+      (err) => {
+        console.error("Error getting geolocation:", err);
       }
-    });
+    );
   };
+
   useEffect(() => {
     getLocation();
   }, []);
+
   return (
-    <BrowserRouter>
-      <Navbar
-        location={location}
-        getLocation={getLocation}
-        openDropdown={openDropdown}
-        setOpendDropdown={setOpendDropdown}
-      />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/products/:id" element={<ProductDetail />} />
-
-        <Route
-          path="/cart"
-          element={
-            <PrivateRoute>
-              <Cart />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/wishlist"
-          element={
-            <PrivateRoute>
-              <Wishlist />
-            </PrivateRoute>
-          }
-        />
-
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-      </Routes>
-
-      <Footer />
-    </BrowserRouter>
+    <>
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/products/:id" element={<ProductDetail />} />
+          <Route
+            path="/cart"
+            element={
+              <PrivateRoute>
+                <Cart />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/wishlist"
+            element={
+              <PrivateRoute>
+                <Wishlist />
+              </PrivateRoute>
+            }
+          />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+      <Toaster position="top-right" reverseOrder={false} />
+    </>
   );
 };
 

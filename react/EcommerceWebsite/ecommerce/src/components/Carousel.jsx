@@ -11,52 +11,50 @@ const Carousel = () => {
 
   useEffect(() => {
     fetchAllProducts();
-  }, []); // Run once on mount
+  }, [fetchAllProducts]); // Added dependency to follow React best practices
 
-  const SamplePrevArrow = (props) => {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        onClick={onClick}
-        className={`arrow ${className}`}
-        style={{ zIndex: 3 }}
-      >
-        <AiOutlineArrowLeft
-          className="arrows"
-          style={{
-            ...style,
-            display: "block",
-            borderRadius: "50px",
-            background: "#f53347",
-            color: "white",
-            position: "absolute",
-            padding: "2px",
-            left: "50px",
-          }}
-        />
-      </div>
-    );
-  };
-  const SampleNextArrow = (props) => {
-    const { className, style, onClick } = props;
-    return (
-      <div onClick={onClick} className={`arrow ${className}`}>
-        <AiOutlineArrowRight
-          className="arrows"
-          style={{
-            ...style,
-            display: "block",
-            borderRadius: "50px",
-            background: "#f53347",
-            color: "white",
-            position: "absolute",
-            padding: "2px",
-            right: "50px",
-          }}
-        />
-      </div>
-    );
-  };
+  // Custom Previous Arrow for Carousel
+  const SamplePrevArrow = ({ className, style, onClick }) => (
+    <div
+      onClick={onClick}
+      className={`arrow ${className}`}
+      style={{ zIndex: 3 }}
+    >
+      <AiOutlineArrowLeft
+        className="arrows"
+        style={{
+          ...style,
+          display: "block",
+          borderRadius: "50px",
+          background: "#f53347",
+          color: "white",
+          position: "absolute",
+          padding: "2px",
+          left: "50px",
+        }}
+      />
+    </div>
+  );
+
+  // Custom Next Arrow for Carousel
+  const SampleNextArrow = ({ className, style, onClick }) => (
+    <div onClick={onClick} className={`arrow ${className}`}>
+      <AiOutlineArrowRight
+        className="arrows"
+        style={{
+          ...style,
+          display: "block",
+          borderRadius: "50px",
+          background: "#f53347",
+          color: "white",
+          position: "absolute",
+          padding: "2px",
+          right: "50px",
+        }}
+      />
+    </div>
+  );
+
   const settings = {
     dots: false,
     autoplay: true,
@@ -65,7 +63,6 @@ const Carousel = () => {
     speed: 700,
     slidesToShow: 1,
     slidesToScroll: 1,
-    // pauseOnHover: true,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
   };
@@ -76,6 +73,7 @@ const Carousel = () => {
         {data?.slice(0, 2).map((item, index) => (
           <div key={index} className="bg-black bg-opacity-90">
             <div className="flex flex-col md:flex-row justify-center items-center px-6 py-16 md:py-32 gap-12 relative">
+              {/* Text Section */}
               <div className="text-center md:text-left max-w-md backdrop-blur-sm bg-white/10 p-6 rounded-xl shadow-lg border border-white/20">
                 <h3 className="text-pink-500 text-sm font-semibold tracking-wider mb-2 uppercase">
                   Premium Tech
@@ -91,6 +89,7 @@ const Carousel = () => {
                 </button>
               </div>
 
+              {/* Image Section */}
               <div className="max-w-[400px] md:max-w-[500px] transition-transform duration-500 hover:scale-105">
                 <img
                   src={item.image}

@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { DataContext } from "../context/DataContext";
 import { addToCart } from "../store/cartSlice";
+import toast from "../../node_modules/react-hot-toast/src/index";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -14,12 +15,12 @@ const ProductDetail = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const handleAddToCart = () => {
     if (!isAuthenticated) {
-      alert("Please log in to add to cart.");
+      toast.error("Please login to add products to cart!");
       navigate("/login");
       return;
     }
     dispatch(addToCart(product));
-    alert("Added to cart!");
+    toast.success("Added to cart!");
   };
 
   if (!product) {
