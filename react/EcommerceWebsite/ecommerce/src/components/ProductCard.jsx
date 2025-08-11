@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { addToCart } from "../store/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { addToWishlist } from "../store/wishlistSlice";
+import toast from "../../node_modules/react-hot-toast/src/index";
 
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ const ProductCard = ({ product }) => {
     }
 
     dispatch(addToCart(product));
-    alert("Added to cart!");
+    toast.success("Added to cart!");
   };
 
   const handleAddToWishList = () => {
@@ -28,7 +29,7 @@ const ProductCard = ({ product }) => {
     }
 
     dispatch(addToWishlist(product));
-    alert("Added to wishlist!");
+    toast.success("Added to wishlist!");
   };
 
   return (

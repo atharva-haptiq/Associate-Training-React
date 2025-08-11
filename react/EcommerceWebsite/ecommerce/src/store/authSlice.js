@@ -5,7 +5,7 @@ function getUserFromStorage() {
     const item = localStorage.getItem("user");
     return item ? JSON.parse(item) : null;
   } catch (e) {
-    console.error("Failed to parse", e);
+    console.error("Failed to parse user data from localStorage", e);
     return null;
   }
 }

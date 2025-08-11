@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromWishlist } from "../store/wishlistSlice";
 import { useNavigate } from "react-router-dom";
+import toast from "../../node_modules/react-hot-toast/src/index";
 
 const Wishlist = () => {
   const wishlistItems = useSelector(
@@ -37,7 +38,7 @@ const Wishlist = () => {
               <button
                 onClick={() => {
                   dispatch(removeFromWishlist(item.id));
-                  alert("Removed from wishlist");
+                  toast.success("Removed from wishlist!");
                 }}
                 className="mt-auto py-2 px-4 bg-red-500 text-white rounded hover:bg-red-600 transition"
               >
