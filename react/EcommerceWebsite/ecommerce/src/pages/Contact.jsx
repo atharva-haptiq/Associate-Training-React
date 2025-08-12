@@ -1,4 +1,5 @@
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 const Contact = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -8,7 +9,7 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert("Thank you for reaching out!");
+    toast.success("Thank you for reaching out!");
     setForm({ name: "", email: "", message: "" });
   };
 

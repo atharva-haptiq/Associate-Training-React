@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromWishlist } from "../store/wishlistSlice";
 import { useNavigate } from "react-router-dom";
-import toast from "../../node_modules/react-hot-toast/src/index";
+import toast from "react-hot-toast";
 
 const Wishlist = () => {
   const wishlistItems = useSelector(

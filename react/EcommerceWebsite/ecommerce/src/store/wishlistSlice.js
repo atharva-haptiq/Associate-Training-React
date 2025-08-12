@@ -21,7 +21,7 @@ const wishlistSlice = createSlice({
       const exists = state.wishlistItems.find((i) => i.id === item.id);
 
       if (!exists) {
-        state.wishlistItems.push({ ...item });
+        state.wishlistItems.push(item);
         localStorage.setItem(
           "wishlistItems",
           JSON.stringify(state.wishlistItems)
