@@ -23,7 +23,7 @@ const checkoutSlice = createSlice({
       const exists = state.checkoutItems.find((i) => i.id === item.id);
 
       if (!exists) {
-        state.checkoutItems.push({ ...item });
+        state.checkoutItems.push(item );
         localStorage.setItem(
           "checkoutItems",
           JSON.stringify(state.checkoutItems)
