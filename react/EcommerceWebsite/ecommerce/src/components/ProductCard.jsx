@@ -3,31 +3,18 @@ import { useNavigate } from "react-router-dom";
 import { addToCart } from "../store/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { addToWishlist } from "../store/wishlistSlice";
-import toast from "../../node_modules/react-hot-toast/src/index";
+import toast from "react-hot-toast";
 
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
   const navigate = useNavigate();
   const handleAddToCart = () => {
-    if (!isAuthenticated) {
-      alert("Please log in to add to cart.");
-      navigate("/login");
-      return;
-    }
-
     dispatch(addToCart(product));
     toast.success("Added to cart!");
   };
 
   const handleAddToWishList = () => {
-    if (!isAuthenticated) {
-      alert("Please log in to add to wishlist.");
-      navigate("/login");
-      return;
-    }
-
     dispatch(addToWishlist(product));
     toast.success("Added to wishlist!");
   };

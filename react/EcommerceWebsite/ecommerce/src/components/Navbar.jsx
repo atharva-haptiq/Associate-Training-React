@@ -97,7 +97,7 @@ const Navbar = () => {
                   dispatch(logout());
                   navigate("/");
                 }}
-                className="text-sm text-red-600 hover:underline transition"
+                className="text-white bg-black px-3 py-2 rounded hover:bg-red-950"
               >
                 Logout
               </button>

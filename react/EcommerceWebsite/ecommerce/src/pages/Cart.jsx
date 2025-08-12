@@ -1,8 +1,13 @@
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart, clearCart } from "../store/cartSlice";
+import toast from "../../node_modules/react-hot-toast/src/index";
+import { addToCheckout } from "../store/checkoutSlice";
+import { useNavigate } from "react-router-dom";
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   const totalPrice = cartItems.reduce(
     (acc, item) => acc + item.price * item.quantity,
@@ -40,7 +45,10 @@ const Cart = () => {
 
               <button
                 className="px-4 py-1 bg-red-500 text-white rounded hover:bg-red-600"
-                onClick={() => dispatch(removeFromCart(item.id))}
+                onClick={() => {
+                  dispatch(removeFromCart(item.id));
+                  toast.success("Removed from cart!");
+                }}
               >
                 Remove
               </button>
@@ -54,12 +62,21 @@ const Cart = () => {
             </span>
           </div>
 
-          <div className="text-center">
+          <div className="text-center flex gap-64">
             <button
               className="mt-6 px-6 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition"
               onClick={() => dispatch(clearCart())}
             >
               Clear Cart
+            </button>
+            <button
+              className="mt-6 px-6 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition"
+              onClick={() => {
+                dispatch(addToCheckout());
+                navigate("/checkout");
+              }}
+            >
+              Checkout
             </button>
           </div>
         </div>

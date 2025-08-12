@@ -1,24 +1,17 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useContext } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { DataContext } from "../context/DataContext";
 import { addToCart } from "../store/cartSlice";
-import toast from "../../node_modules/react-hot-toast/src/index";
+import toast from "react-hot-toast";
 
 const ProductDetail = () => {
   const { id } = useParams();
   const { data } = useContext(DataContext);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const product = data?.find((item) => item.id.toString() === id);
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const handleAddToCart = () => {
-    if (!isAuthenticated) {
-      toast.error("Please login to add products to cart!");
-      navigate("/login");
-      return;
-    }
     dispatch(addToCart(product));
     toast.success("Added to cart!");
   };

@@ -6,7 +6,6 @@ export const DataContext = createContext(null);
 export const DataProvider = ({ children }) => {
   const [data, setData] = useState([]);
 
-  // Fetch all products from API
   const fetchAllProducts = async () => {
     try {
       const res = await axios.get(
